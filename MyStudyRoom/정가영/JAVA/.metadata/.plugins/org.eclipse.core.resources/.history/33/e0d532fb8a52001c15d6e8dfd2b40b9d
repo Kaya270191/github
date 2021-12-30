@@ -1,0 +1,23 @@
+//거스름돈을 몇 개의 동전으로 지불할 수 있는지 계산. 나눗셈 연산자와 나머지 연산자 사용 
+
+package PracticeArray;
+
+public class pdf5_6 {
+
+	public static void main(String[] args) {
+		int [] coinUnit = {500,100,50,10};
+		
+		int money = 2680;
+		int money1;
+
+		
+		for(int i=0; i<coinUnit.length; i++) {
+			money=money/coinUnit[i];	//몫		
+			System.out.println("money=" + money); 
+			money1= money%coinUnit[i];
+			System.out.println(money1);
+		}
+		
+	}
+
+}

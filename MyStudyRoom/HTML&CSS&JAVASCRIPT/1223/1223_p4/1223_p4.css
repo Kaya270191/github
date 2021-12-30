@@ -1,0 +1,23 @@
+#box{
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    left: 0;
+    /* 초반에 캐릭터가 보이지 않게 함 */
+    top: -100px;
+    transition: all .5s ease-out;
+    background-image: url('cloud.jpg');
+    background-size: cover;
+    /* 커서 깜박임 제거*/
+    caret-color: transparent;
+}
+
+/* 그라운드 스타일 */
+#bar{
+    width: 700px;
+    height: 70px;
+    background-color: peru;
+    position: absolute;
+    left: 0;
+    top: 570px;
+}

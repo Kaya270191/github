@@ -1,0 +1,13 @@
+//2차원 배열 arr에 담긴 모든 값의 총합과 평균을 구하는 프로그램 
+
+
+public class Array5_4 {
+
+	public static void main(String[] args) {
+		int[][] = {
+				
+		}
+
+	}
+
+}

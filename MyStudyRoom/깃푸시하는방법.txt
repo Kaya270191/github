@@ -1,0 +1,50 @@
+git 허브에서 올릴 폴더 repository 주소 복사
+
+내가 쓸 폴더에서 git init
+
+git branch -m main  <- 브랜치를 메인으로 바꿈
+
+git stauts  <- 변경된 내용 출력
+
+git add .  <- 변경된 내용이 반영 
+
+git commit -am "변경사항이름"
+
+git remote add 내가쓸이름 repository주소 
+
+git remote -v  <- remote랑 주소가 맞는지 
+
+git push 내가쓸이름 main
+
+git push 내가쓸이름 main -f  <- 처음에 강제로 업로드 . 이후에는 사용 금지 
+
+
+<다음번에 쓸때>
+kayaRoom 안에 들어가서 빈칸에서  마우스 우클릭 Git Bash here 누르기
+git status  
+git add .
+git commit -am "변경사항이름"
+git remote -v 
+git push 내가쓸이름 main
+
+
+
+cd 이동하는 명령어
+cd ..  <-한칸상위폴더로 이동
+cd ../../../ <- 상위상위상위 폴더로 이동
+
+cd 폴더명 <- 해당폴더로 들어감 
+
+****내가 쓸 이름: original
+**내가 쓸 이름: room  으로 지정함 
+
+
+
+
+
+
+//cmd 창에서 
+javac 자바파일이름.java   : 클래스파일로 바꾸기 
+
+두개의 cmd 창에서 서버와 클라이언트를 실행함 
+java 패키지.자바파일이름   : 패키지 안에 있는 자바파일 실행하려면 바로위 상위폴더에서 실행해야함

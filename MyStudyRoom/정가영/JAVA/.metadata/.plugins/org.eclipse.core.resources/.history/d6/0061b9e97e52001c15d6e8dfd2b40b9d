@@ -1,0 +1,17 @@
+package PracticeArray;
+
+public class pdf5_2 {
+	
+	static int [][] arr = {
+			{5,5,5,5,5},
+			{10,10,10},
+			{20,20,20,20},
+			{30,30}		
+	};
+
+	public static void main(String[] args) {
+		System.out.println(arr[3].length);
+
+	}
+
+}

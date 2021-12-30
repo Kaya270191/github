@@ -1,0 +1,27 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+/* box 가 box-container 안에서 움직일 수 있도록 부모인 
+box-container 의 position 속성은 relative 로 설정하고 
+자식인 box 의 position 속성은 abosolute 로 설정 */
+/* 부모 박스 */
+#box-container{ 
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 100px auto;
+    background-color: lightsalmon;
+
+}
+/* 자식박스 */
+#box{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100px;
+    height: 100px;
+    background-color: lightpink;
+    transition: all 1s;
+}

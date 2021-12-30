@@ -1,0 +1,54 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    display: flex; /*가장 큰 div인 container 가 flex고 정렬이 column임 남는 영역을 center 부분을 차지하게 하고 싶다면 flex-grow:1 로 설정*/
+    flex-direction: column;
+    background: yellow;
+}
+
+.header{
+    height: 50px;
+    background: chocolate;
+    border: 5px solid black;
+    text-align: center;
+    
+}
+.center{
+    display: flex;
+    flex-grow: 1; /*contair 남는 공간을 1의 비율로 차지*/
+    text-align: center; 
+}
+
+.sidebar{
+    width: 400px;
+    flex-shrink: 1;/*값이 0이면 contents값이 글자크기보다 줄어들어도 width:400px값이 고정됨. 값이 1인 경우 contents의 글자크기보다 창을 줄이면 sidebar의 크기도 줄어들기 시작*/
+    background: cyan;   
+    border: 5px solid black;
+}
+
+.contents{
+    background: darkorchid;
+    flex-grow: 1; /*center 가로축의 남는 공간을 1의 비율로 차지*/
+    border: 5px solid black;
+}
+
+
+.footer{
+    height: 100px;
+    background: cornflowerblue;
+    border: 5px solid black;
+    text-align: center;
+}
+
+@media screen and (max-width:1200px){
+    .sidebar{ /*창이 1200px보다 줄어들면 가로가 20%줄어듦*/
+        width: 20%;
+    }
+}

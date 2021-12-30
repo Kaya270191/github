@@ -1,0 +1,28 @@
+//p.516 
+//9-4 BorderLayout 배치관리자를 사용하는 예
+
+import javax.swing.*;
+import java.awt.*; 
+
+public class E9_4 extends JFrame{ //JFrame을 상속받은 E9_4
+	public E9_4() { //생성자 
+		setTitle("BorderLayout Sample"); //제목
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //닫기 누르면 프로그램 종료 
+		Container c = getContentPane(); //컨테츠팬 얻기 
+		
+		//컨텐츠팬에 BorderLayout관리자 설정 
+		c.setLayout(new BorderLayout(30,20));
+		c.add(new JButton("Calculate"), BorderLayout.CENTER);
+		c.add(new JButton("add"), BorderLayout.NORTH);
+		c.add(new JButton("sub"), BorderLayout.SOUTH);
+		c.add(new JButton("mul"), BorderLayout.EAST);
+		c.add(new JButton("div"), BorderLayout.WEST);
+		
+		setSize(300,200);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		new E9_4();
+	}
+}

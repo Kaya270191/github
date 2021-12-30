@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style1202.css">
+</head>
+<body>
+ <!-- -->
+    <button onclick='popup()'>팝업창 열기-인라인방식</button>  
+    <button id='popup1'>팝업창 열기-요소의프로프티방식</button> 
+    <button id='popup2'>팝업창 열기-요소의메서드방식</button>
+    <button id='popup3'>이벤트객체</button>
+
+
+    <h1>로그인 화면</h1>
+    <form action="/home"> <!--url주소가 "/home" 으로 넘어감 --> 
+        <input type="text" id='user-id'>
+        <input type="password" id='user-password'>
+        <input type="submit">
+    </form>
+    <p></p>
+
+
+
+    <div class='instant-msg'>Instant Message</div>
+
+    <div id='clock'></div>  <!--시계 추가 --> 
+
+    <div id="circle"></div> <!--마우스 따라다니는 원 --> 
+
+    <div id="led-container">
+        <div class="led"></div>
+        <div class="led"></div>
+        <div class="led"></div>
+    </div>
+
+
+    <button id='open-btn'>open sidebar</button>  <!--버튼을 누르면 사이드바가 열림 -->
+    <div class="sidebar">
+        <div class="menu">HOME</div>
+        <div class="menu">ABOUT</div>
+        <div class="menu">CONTACT</div>
+    </div>
+
+
+    <script src="script1202.js"></script>
+
+ 
+
+</body>
+</html>

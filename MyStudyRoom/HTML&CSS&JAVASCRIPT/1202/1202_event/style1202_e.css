@@ -1,0 +1,81 @@
+#circle{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: skyblue;
+    /* 원 안에 이미지 추가하기 */
+    background-image: url('ikon.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+    /* background: black; */
+}
+#led-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 500px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.led{
+    width: 30px;
+    height: 30px;
+    background: orange;
+    border-radius: 50%;
+    margin-right: 50px;
+    transition: all 0.5s ease-in-out;
+}
+.on{
+    box-shadow: 1px 1px 10px 10px orange;
+}
+
+
+
+.sidebar{
+    width: 30%;
+    height: 100vh;
+    position: absolute;
+    /* -30% 위치에 있다가 버튼을 클릭하면 0px로 오도록 함  */
+    left: -30%; 
+    top: 0px;
+
+    /* 가운데정렬 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.7s ease-in-out;
+}
+.show{
+    left: 0px;
+}
+.menu{
+    width: 100%;
+    flex: 1;
+    background-color: peru;   
+    font-size: 1.5rem; 
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: lightgoldenrodyellow;
+    border-bottom: 1px solid lightgoldenrodyellow;
+}
+.menu:hover{
+    color: peru;
+    background-color: lightgoldenrodyellow;
+}

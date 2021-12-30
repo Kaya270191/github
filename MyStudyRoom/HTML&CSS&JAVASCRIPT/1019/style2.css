@@ -1,0 +1,34 @@
+body{
+    padding: 0;
+    margin:0;
+}
+
+.parent{
+    width: 600px;
+    height: 200px;
+    background-color: greenyellow;
+    text-align: center;
+}
+
+.child{
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    display: inline-block;
+}
+
+
+@media screen and (max-width:600px){
+    .parent{
+        height: 420px;
+    }
+    .child{
+        width: 90%;    
+    }
+
+    .child:nth-child(2){
+        margin-top: 20px;
+    }
+
+}
+

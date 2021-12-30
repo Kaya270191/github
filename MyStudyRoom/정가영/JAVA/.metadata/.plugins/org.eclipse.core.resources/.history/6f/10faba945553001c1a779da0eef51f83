@@ -1,0 +1,48 @@
+//5-9 주어진 배열을 시계방향으로 90도 회전시켜서 출력하는 프로그램
+
+package PracticeArray;
+
+public class pdf5_9 {
+
+	public static void main(String[] args) {
+		char[][] star= {
+				{'*','*',' ', ' ',' '},
+				{'*','*',' ',' ',' '},
+				{'*','*','*','*','*',},
+				{'*','*','*','*','*',}};
+		
+		char[][] result = new char[star[0].length][star.length];
+		
+		for(int i =0; i<star.length;i++) {
+			for(int j=0; j<star[i].length;j++) {
+				System.out.print(star[i][j]);
+			}
+			System.out.println();
+		}
+		System.out.println();
+		
+		
+		int x;
+		int y;
+		for(int i=0; i<star.length; i++) { //result[] 만들기 
+			
+			for(int j=0; j<(star[i].length); j++) {
+				
+				x = j; // 0123 0123 반복
+				y = star.length-1-i; // 3333, 2222 반복
+				// i+y = star.length-1 = 3으로 같음
+				result[x][y] = star[i][j]; // i, j를 x, y에 넣어줌
+
+			}
+			
+		}
+		
+		
+		for(int i=0; i< result.length; i++) {
+			for(int j=0; j<result[i].length; j++) {
+				System.out.print(result[i][j]);
+			}
+			System.out.println();
+		}		
+	}
+}

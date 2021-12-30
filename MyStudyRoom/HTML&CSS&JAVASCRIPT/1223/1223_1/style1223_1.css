@@ -1,0 +1,42 @@
+body{
+    height: 200vh;
+}
+#section{
+    /* 가운데정렬 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 위에서 400px 떨어짐 */
+    margin-top: 400px; 
+
+}
+.contents{
+    background-color: brown;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    line-height: center;
+    margin-right: 10px;
+    opacity: 0;
+    /* transition: 전환효과  */
+    transition: all .5s ease;
+}
+.up{
+    /* y 좌표를 아래쪽으로 100px 만큼 내린다 */
+    transform: translate(0, 100px); 
+    background-color: salmon;
+}
+
+.down{
+    /* y 좌표를 위쪽으로 100px 만큼 올린다 */
+    transform: translate(0, -100px); 
+}
+
+.show{
+    /* opacity : 요소를 투명하게 하는 값 0으로 가까워질수록 투명해짐 */
+    opacity: 1;
+    transform: none;
+}
