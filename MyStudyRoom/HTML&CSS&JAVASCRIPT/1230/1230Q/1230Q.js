@@ -93,20 +93,22 @@ Shawty Shawty Shawty Shawty
 const keyword1 = 'Sorry'
 const keyword2 = '부셔'
 
-const lyrics2 = lyrics.replace(/\s+/, "").replace(/\s+$/g, "").replace(/\n/g, "").split(" ")
+//const lyrics2 = lyrics.replace(/\s+/, "").replace(/\s+$/g, "").replace(/\n/g, "").split(" ")
 // value = value.replace(/\s+/, "");//왼쪽 공백제거
 // value = value.replace(/\s+$/g, "");//오른쪽 공백제거
 // value = value.replace(/\n/g, "");//행바꿈제거
 // value = value.replace(/\r/g, "");//엔터제거
-console.log(lyrics2)
-
+//console.log(lyrics2)
 
 function searchWord(keyword, n){
-    
-	if(lyrics2.indexOf(keyword) && keyword.length==n){
-        return 
-    }
+    const serchedIndexes = []//찾은 인덱스를 저장할 배열
+    let foundIndex = lyrics.indexOf(keyword)
 
+    while(foundIndex != -1){
+        serchedIndexes.push(foundIndex)
+        foundIndex = lyrics.indexOf(keyword, foundIndex + n) //다음 인덱스를 찾기 위해 찾은 배열번째에서 +n
+    }
+    return serchedIndexes.length
 }
 
 console.log(searchWord(keyword1, keyword1.length))
@@ -124,6 +126,7 @@ const movies = [
 ]
 
 const foundMovie =movies.find((movie)=> {
+    //const year = movie.release.split('-')[0] //movies의 release로 접근해서year만 잘라옴
     return movie.release > '2005-01-01' && movie.release < '2010-01-01'
 })
 console.log(foundMovie)
@@ -133,6 +136,7 @@ console.log(foundMovie)
 
 const foundMovie2=movies.find((movie)=>{
     return movie.title.includes('man')
+    //return movie.title.indexOf('man')!=-1 
 })
 console.log(foundMovie2)
 
@@ -141,7 +145,7 @@ console.log(foundMovie2)
 //영화를 추출해보자! find 메서드를 사용하고, 반환값은 객체이다. 
 
 const foundMovie3=movies.find((movie)=>{
-    return movie.title.startsWith('J')
+    return movie.title.startsWith('J') && movie.release.split('-')[0]<2010
 })
 console.log(foundMovie3)
 
@@ -170,14 +174,18 @@ function A(word){
     if(word.includes('a')){
         console.log(word)
     }
+
+    //if(word.indexOf('a')!= -1){
+    //    console.log(word)
+    //}
 }
 words.forEach(A)
 
-//* 연습과제 6
-//상품 유형(product_type) 이 mascara 이고, 가격(price) 이 10달러 미만인 
-//모든 화장품에 대한 정보(객체)를 검색해보자!
+// * 연습과제 6
+// 상품 유형(product_type) 이 mascara 이고, 가격(price) 이 10달러 미만인 
+// 모든 화장품에 대한 정보(객체)를 검색해보자!
 
-// const API_URL = 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline' 
+const API_URL = 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline' 
 
 // fetch(API_URL)
 // .then(function(res){
@@ -186,8 +194,10 @@ words.forEach(A)
 // .then(function(products){
 //     console.log(products) //객체 배열 
 
-//     function foundCos(product){
-//         if (product.product_type=== 'mascara' && product.price <10){
+//     function foundCos(product){ 
+//         //parseInt
+//         if (product.product_type=== 'mascara' && parseInt(product.price) < 10){
+//             console.log("6번")
 //             console.log(product)
 //         }
 //     }
@@ -236,15 +246,30 @@ function foundFriend(friend){
         console.log(friend)
     }
 }
-
 friends.forEach(foundFriend)
 
 //* 연습과제 9
 //친구목록에서 city 프로퍼티를 기준으로 친구들이
 // 사는 지역을 분류해보자!
+const citySeoul = []
+const cityBusan = []
+const cityDaegu = []
 
-
-
+friends.forEach((element) =>{
+    if(element.city === 'seoul'){
+        citySeoul.push(element)
+    }
+    else if(element.city === 'busan'){
+        cityBusan.push(element)
+    }
+    else if(element.city === 'daegu'){
+        cityDaegu.push(element)
+    }
+})
+console.log("9번")
+console.log("seoul : " + citySeoul.length)
+console.log("daegu : " + cityDaegu.length)
+console.log("busan : " + cityBusan.length)
 
 
 //* 연습과제 10
@@ -287,31 +312,9 @@ users.forEach((user)=>{
 
 })
 
-//* 연습과제 12
-//연습과제 6번에 사용한 OPEN API 데이터를 사용하여 웹 화면에 아래와 같이 출력해보자! 
-const API_URL = 'http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline' 
 
-// 상품 정보에 대한 배열로부터 웹화면에 보여줄 DOM 객체로 이루어진 배열로 변환하기
-// product 객체의 image_link, name, price, description 프로퍼티 사용하기
-function buildElement(product){
-    // 구현하기
-}
 
-// DOM 객체로 이루어진 배열을 사용하여 웹 화면에 상품 정보 보여주기
-function displayProduct(product){
-   // 구현하기
-}
 
-fetch(API_URL)
-.then(function(res){
-    return res.json()
-})
-.then(function(products){
-    console.log(products)
 
-    // 상품 정보에 대한 배열로부터 웹화면에 보여줄 DOM 객체로 이루어진 배열로 변환하기
-    const productsRefined = products.map(buildElement)
-    
-    // DOM 객체로 이루어진 배열을 사용하여 웹 화면에 상품 정보 보여주기
-    productsRefined.forEach(displayProduct)
-})
+
+

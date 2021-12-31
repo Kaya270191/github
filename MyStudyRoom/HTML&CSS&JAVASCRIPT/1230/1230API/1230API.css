@@ -1,0 +1,27 @@
+
+.body{
+    margin: 0;
+    padding: 0;
+}
+
+
+.title{
+    background: yellowgreen;
+    width: 100px;
+    height: 100px;
+    
+    
+
+}
+
+.bundesland{
+    background: green;
+    width: 100px;
+    height: 100px;
+}
+
+.ort{
+    background: grey;
+    width: 100px;
+    height: 100px;
+}
