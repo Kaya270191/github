@@ -248,28 +248,48 @@ function foundFriend(friend){
 }
 friends.forEach(foundFriend)
 
+// const friendsFiltered = friends.filter(friend 
+//     => friend.city === 'seoul'&& friend.ag<30)
+
 //* 연습과제 9
 //친구목록에서 city 프로퍼티를 기준으로 친구들이
 // 사는 지역을 분류해보자!
-const citySeoul = []
-const cityBusan = []
-const cityDaegu = []
+// const citySeoul = []
+// const cityBusan = []
+// const cityDaegu = []
 
-friends.forEach((element) =>{
-    if(element.city === 'seoul'){
-        citySeoul.push(element)
+// friends.forEach((element) =>{
+//     if(element.city === 'seoul'){
+//         citySeoul.push(element)
+//     }
+//     else if(element.city === 'busan'){
+//         cityBusan.push(element)
+//     }
+//     else if(element.city === 'daegu'){
+//         cityDaegu.push(element)
+//     }
+// })
+// console.log("9번")
+// console.log("seoul : " + citySeoul.length)
+// console.log("daegu : " + cityDaegu.length)
+// console.log("busan : " + cityBusan.length)
+
+//교수님 답 
+const classifiedCity = {}//빈 객체 만듦(객체에 키와 벨류 값을 넣을 수 있음)
+
+function classify(friend){
+    if(!classifiedCity[friend.city]){ // 객체에 같은 시티가 없으면 시티를 하나씩 증가 
+        classifiedCity[friend.city] = 0
     }
-    else if(element.city === 'busan'){
-        cityBusan.push(element)
-    }
-    else if(element.city === 'daegu'){
-        cityDaegu.push(element)
-    }
-})
-console.log("9번")
-console.log("seoul : " + citySeoul.length)
-console.log("daegu : " + cityDaegu.length)
-console.log("busan : " + cityBusan.length)
+    classifiedCity[friend.city]++
+    console.log(classifiedCity)
+}
+
+friends.forEach(classify)
+
+for(let prop in classifiedCity){
+    console.log(prop, ':', classifiedCity[prop])
+}
 
 
 //* 연습과제 10
@@ -283,6 +303,8 @@ function findAge(friend){
 }
 
 console.log(friends.some(findAge))
+
+//friends.some(friend => friend.age>40)
 
 //* 연습과제 11
 //나이(age)가 0 보다 작거나 실수인 유효하지 않은 정보를 가진 
@@ -309,12 +331,17 @@ users.forEach((user)=>{
     user.email.includes('.com')===true ){
         console.log(user)
     }
-
 })
 
 
+//교수님 답
+let filteredUsers = null
+function ageIsValid(user){ // parseInt 정수 
+    return user.age > 0 && parseInt(user.age) === user.age 
+}
+function emailIsValid(user){ //index('..') 포함되어 있지 않으면 -1 리턴
+    return user.email.indexOf('@') > -1 && user.email.indexOf('.com') >-1
+}
 
-
-
-
-
+filteredUsers = users.filter(ageIsValid)
+filteredUsers = filteredUsers.filter(emailIsValid) //걸러진 사용자들로 다시 filter
