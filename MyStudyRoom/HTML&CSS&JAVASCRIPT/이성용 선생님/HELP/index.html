@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* ::-webkit-scrollbar{
+        display: none;
+        } */
+
+        /* http://meyerweb.com/eric/tools/css/reset/ 
+           v2.0 | 20110126
+           License: none (public domain)
+        */
+
+        html,
+        body,
+        div,
+        span,
+        applet,
+        object,
+        iframe,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        blockquote,
+        pre,
+        a,
+        abbr,
+        acronym,
+        address,
+        big,
+        cite,
+        code,
+        del,
+        dfn,
+        em,
+        img,
+        ins,
+        kbd,
+        q,
+        s,
+        samp,
+        small,
+        strike,
+        strong,
+        sub,
+        sup,
+        tt,
+        var,
+        b,
+        u,
+        i,
+        center,
+        dl,
+        dt,
+        dd,
+        ol,
+        ul,
+        li,
+        fieldset,
+        form,
+        label,
+        legend,
+        table,
+        caption,
+        tbody,
+        tfoot,
+        thead,
+        tr,
+        th,
+        td,
+        article,
+        aside,
+        canvas,
+        details,
+        embed,
+        figure,
+        figcaption,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        output,
+        ruby,
+        section,
+        summary,
+        time,
+        mark,
+        audio,
+        video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        /* HTML5 display-role reset for older browsers */
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        section {
+            display: block;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        ol,
+        ul {
+            list-style: none;
+        }
+
+        blockquote,
+        q {
+            quotes: none;
+        }
+
+        blockquote:before,
+        blockquote:after,
+        q:before,
+        q:after {
+            content: '';
+            content: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 상단 고정 로고, 로그인*/
+        .logo-btn {
+            z-index: 10;
+            margin-left: 30px;
+            position: fixed;
+            margin-top: 16px;
+            border-radius: 70%;
+            background-size: cover;
+            width: 70px;
+            height: 70px;
+            background-image: url('resources/img/lost.png');
+            border: 0;
+        }
+
+        .logo-btn:hover {
+            cursor: pointer;
+        }
+
+        .login {
+            z-index: 20;
+            color: rgb(255, 255, 255);
+            font-weight: bolder;
+            font-size: 1rem;
+            width: 112px;
+            height: 70px;
+            background-color: #282828;
+            margin-top: 16px;
+            margin-right: 30px;
+            right: 0px;
+            position: fixed;
+            border-radius: 20px;
+            text-align: center;
+            border: 0;
+            transition-duration: 0.5s;
+        }
+
+        .login:hover {
+            background-color: black;
+            font-size: 1.4rem;
+            transition-duration: 0.5s;
+            cursor: pointer;
+        }
+
+        /* 상단 고정 바 */
+        .main_nav {
+            z-index: 5;
+            display: flex;
+            width: 100%;
+            height: 100px;
+            background: #282828;
+            justify-content: space-evenly;
+            position: fixed;
+            top: 0;
+            flex-wrap: wrap;
+        }
+
+
+
+        .bar {
+            border: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            background-color: #282828;
+            text-align: center;
+            width: 30vw;
+            height: 100px;
+        }
+
+        .bar:hover {
+            cursor: pointer;
+        }
+
+        /* 밑에 내려오는창 */
+        .bar-menu {
+            display: flex;
+            margin-top: -300px;
+            position: fixed;
+            width: 100%;
+            height: 300px;
+            background-color: #282828;
+            color: white;
+            justify-content: space-evenly;
+            align-items: center;
+            transition-duration: 0.5s;
+            opacity: 0.5;
+        }
+
+        .sub-menu {
+            background-color: #282828;
+            color: white;
+            width: 30vw;
+            height: 300px;
+        }
+
+        .sub-menu-object {
+            font-size: 1.5rem;
+            margin-top: 80px;
+            margin-bottom: 100px;
+            text-align: center;
+            background-color: #282828;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .table {
+            display: flex;
+            background-image: url(resources/img/infi.jpg);
+            background-size: cover;
+            width: 1903px;
+            height: 900px;
+            justify-content: center;
+        }
+
+        .table :nth-child(1) {
+            z-index: 2;
+            display: flex;
+            width: 1000px;
+            height: 400px;
+            background-color: rgb(0, 0, 0);
+            position: absolute;
+            top: 500px;
+            left: 315px;
+        }
+
+        .table :nth-child(2) {
+            z-index: 2;
+            display: flex;
+            width: 350px;
+            height: 400px;
+            background-color: rgb(10, 10, 10);
+            top: 500px;
+            position: absolute;
+            left: 1339px;
+        }
+
+
+        #third-container {
+            width: 1990px;
+            height: 900px;
+        }
+
+        .third-table:nth-child(1) {
+            z-index: 1;
+            display: flex;
+            width: 1000px;
+            height: 400px;
+            background-color: rgb(0, 0, 0);
+            position: absolute;
+            top: 500px;
+            left: 315px;
+        }
+
+        .third-table:nth-child(2) {
+            z-index: 1;
+            display: flex;
+            width: 350px;
+            height: 400px;
+            background-color: rgb(10, 10, 10);
+            top: 500px;
+            position: absolute;
+            left: 1339px;
+        }
+
+        .copyright {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            bottom: 0;
+            font-size: 1rem;
+            text-align: center;
+            background-color: white;
+
+        }
+
+        audio {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--상단 fixed 네비-->
+    <div class="bar-menu" id="bar-menu">
+        <div class="sub-menu">
+            <div class="sub-menu-object">
+                <a href="#">업데이트 목록</a>
+            </div>
+            <div class="sub-menu-object">
+                <a href="#">이벤트 목록</a>
+            </div>
+        </div>
+        <div class="sub-menu">
+            <div class="sub-menu-object">
+                <a href="#">사건사고 게시판</a>
+            </div>
+            <div class="sub-menu-object">
+                <a href="#">초보자 가이드</a>
+            </div>
+        </div>
+        <div class="sub-menu">
+            <div class="sub-menu-object">
+                <a href="#">업데이트 목록</a>
+            </div>
+            <div class="sub-menu-object">
+                <a href="#">이벤트 목록</a>
+            </div>
+        </div>
+    </div>
+    <!-- 네비기능 -->
+    <div class="main_nav" id="main-nav">
+        <!-- 버튼기능 -->
+        <button class="bar" id="bar">공지사항
+        </button>
+        <button class="bar" id="bar">커뮤니티
+        </button>
+        <button class="bar" id="bar">다운로드
+        </button>
+    </div>
+    <!-- 로그인 버튼 -->
+    <button type="button" class="login" id="login" onclick="location.href='memberlogin.do' text=" 로그인">로그인</button>
+    <!-- 로고 버튼 -->
+    <button class="logo-btn" id="logo-btn">
+        <href="#">
+    </button>
+
+
+
+
+
+    <!--두번째 컨테이너-->>
+    <div class="second-tab">
+        <!--영상,소개-->
+        <div class="bg">
+            <div class="table">
+                <div class="table">
+                </div>
+                <div class="table">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--세번째 컨테이너-->
+    <div id="third-container">
+        <!--영상,소개-->
+        <!--     <div class ="third-bg">-->
+        <div>
+            <div class="third-table">
+            </div>
+            <div class="third-table">
+            </div>
+        </div>
+        <!-- </div> -->
+    </div>
+    <!--음악-->>
+    <audio autoplay controls>
+        <source src="resources/img/bgm.mp3">
+    </audio>
+    <script>
+        // 상단바 마우스 반응 영역
+        const main = document.getElementById('main-nav')
+        const bar = document.getElementById('bar-menu')
+        console.log(main)
+        console.log(bar)
+
+
+        function mousein() {
+            if (bar.classList.contains('bar-menu')) {
+                bar.style.marginTop = "100px"
+            }
+        }
+
+        function mousein2() {
+            if (bar.classList.contains('bar-menu')) {
+                bar.style.marginTop = "100px"
+            }
+        }
+
+        function mouseout() {
+            if (bar.classList.contains('bar-menu')) {
+                bar.style.marginTop = "-300px"
+            }
+        }
+
+        function mouseout2() {
+            if (bar.classList.contains('bar-menu')) {
+                bar.style.marginTop = " -300px"
+            }
+        }
+        main.addEventListener('mouseover', mousein)
+        bar.addEventListener('mouseover', mousein2)
+        main.addEventListener('mouseout', mouseout)
+        bar.addEventListener('mouseout', mouseout2)
+
+
+
+        // 로고 로그인 반응형
+        function viewMini() {
+            const ViewportWidth = window.innerWidth;
+            const login = document.getElementById("login");
+            const logo = document.getElementById("logo-btn")
+            if (parseInt(ViewportWidth) < 1200) {
+                login.style.display = "none"
+                logo.style.display = "none"
+            }
+            else {
+                login.style.display = "inline"
+                logo.style.display = "inline"
+            }
+        }
+
+        setInterval(viewMini, 1)
+    </script>
+</body>
+
+</html>

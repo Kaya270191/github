@@ -1,0 +1,15 @@
+function factorial(n) {
+    if (factorial[n]) {
+        return factorial[n] // 메모이제이션 (memoization) => 이전에 계산된 결과값을 기억
+    } else {
+        if (n === 0) {
+            factorial[n] = 1 // 계산값을 저장해둠
+            return 1
+        } else {
+            factorial[n] = factorial(n - 1) * n
+            return factorial(n - 1) * n
+        }
+    }
+}
+
+console.log(factorial(5) * factorial(5))

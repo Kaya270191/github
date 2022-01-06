@@ -12,6 +12,15 @@ for(let i=0; i<5; i++){
 }
 console.log(companiesReversed)
 
+//교수님답 
+// var popped = companies.pop() //기존 배열을 하나씩 꺼내기
+// while(popped!== undefined){ //꺼낼 게 없을 때가지 반복 
+//     companiesReversed.push(popped) //꺼낸 것 넣기 
+//     popped = companies.pop() //기존 배열에서 다시 꺼낵 
+// }
+// console.log(companiesReversed)
+
+
 
 //* 연습과제 3
 //다음은 SNS 에 등록된 나의 친구목록이다. 
@@ -34,6 +43,10 @@ const newFriends = [
 ]
 const addFriends = friends.splice(2,0, newFriends[0],newFriends[1])
 console.log(friends)
+
+//교수님 답
+// frined.splice(2,0, ...newFriends)
+// console.log(friends)
 
 //연습과제4
 //hannah 와 shara 를 친구목록에서 제거
@@ -77,6 +90,10 @@ let filtered = friends2.filter((element)=>{
 })
 console.log(ruralFriends)
 
+//교수님답
+// const modifiedFriend = friends.filter(element => element.city !== 'seoul')
+// console.log(modifiedFriend)
+
 
 //* 연습과제 6
 // friends 배열을 나이순으로 정렬한 다음 서른보다 적은 친구만 추출
@@ -108,6 +125,14 @@ friends3.forEach((a)=>{
 })
 console.log(myFrineds3)
 
+//교수님 답 
+// const friendsYoung = friends3
+//     .sort( (a,b) => a.age - b.age)
+//     .filter(friend => friend.age < 30)
+// console.log("6번")
+// console.log(friendsYoung)
+
+
 //* 연습과제 7
 //친구의 이름에 대하여 알파벳 순으로 정렬 
 const friends4 = [
@@ -123,13 +148,22 @@ const friends4 = [
     {name: 'dannel', age: 19, city: 'seoul'},
 ]
 
-friends4.sort((a,b)=>{
-    if(a.name > b.name) return 1
-    if(a.name < b.name) return -1 
-    if(a.name === b.name) return 0
+// friends4.sort((a,b)=>{
+//     if(a.name > b.name) return 1
+//     if(a.name < b.name) return -1 
+//     if(a.name === b.name) return 0
+// })
+// console.log(friends4)
+
+//교수님답
+friends4.sort((a,b) =>{
+    const aName = a.name.toLowerCase() //소문자로 바꿈
+    const bName = b.name.toLowerCase() //소문자로 바꿈 
+    if(aName > bName) return 1
+    if(aName < bName) return -1 
+    return 0 
 })
 console.log(friends4)
-
 
 //* 연습과제 8
 //영화 발매일 (release) 을 기준으로 최신순으로 정렬
@@ -150,3 +184,26 @@ movies.sort((a,b)=>{
 })
 console.log(movies)
 
+
+//교수님 답 
+// movies.sort((a,b) =>{
+//     const aRelease = a.release.split('-') //2003-02-22 => ['2003','02','22']
+//     const bRelease = b.release.split('-')
+//     const yearA = aRelease[0], monthA = aRelease[1], dayA= aRelease[2]
+//     const yearB = bRelease[0], monthB = bRelease[1], dayB= aRelease[2]
+
+//     //년도 비교
+//     if(yearA < yearB) return 1
+//     if(yearA > yearB) return -1
+    
+//     //년도가 같으면 달을 비교하기
+//     if(monthA < monthB) return 1
+//     if(monthA > monthB) return -1
+
+//     //년도와 달이 모두 같은 경우 일을 비교하기 
+//     if(dayA < dayB) return 1
+//     if(dayA > dayB) return -1
+
+//     return 0 
+// })
+// console.log(movies)
