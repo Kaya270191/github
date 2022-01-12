@@ -16,7 +16,7 @@ console.log(companiesReversed)
 // var popped = companies.pop() //기존 배열을 하나씩 꺼내기
 // while(popped!== undefined){ //꺼낼 게 없을 때가지 반복 
 //     companiesReversed.push(popped) //꺼낸 것 넣기 
-//     popped = companies.pop() //기존 배열에서 다시 꺼낵 
+//     popped = companies.pop() //기존 배열에서 다시 꺼내기
 // }
 // console.log(companiesReversed)
 
@@ -45,7 +45,7 @@ const addFriends = friends.splice(2,0, newFriends[0],newFriends[1])
 console.log(friends)
 
 //교수님 답
-// frined.splice(2,0, ...newFriends)
+// frined.splice(2,0, ...newFriends) //스프레드 연산자(배열+배열)
 // console.log(friends)
 
 //연습과제4
@@ -62,7 +62,7 @@ const friends1 = [
     {name: 'nana', age: 24, city: 'busan'},
     {name: 'dannel', age: 19, city: 'seoul'},
 ]
-const removeFriends1 = friends1.splice(4,2)
+const removeFriends1 = friends1.splice(4,2) //배열의 4번째 요소에서 시작해서 2개 삭제 
 console.log(friends1)
 
 //* 연습과제 5
@@ -80,15 +80,15 @@ const friends2 = [
     {name: 'dannel', age: 19, city: 'seoul'},
 ]
 
-const ruralFriends=[]
+const ruralFriends=[] //빈 배열 
 
 let filtered = friends2.filter((element)=>{
-    const noSeoul = (element.city !== 'seoul')
-    if(noSeoul==true){
-        ruralFriends.push(element)
+    const noSeoul = (element.city !== 'seoul') //배열의 요소.city가 서울이 아닌 것을 변수에 저장
+    if(noSeoul==true){  //참이면
+        ruralFriends.push(element) //빈 배열에 추가 
     }
 })
-console.log(ruralFriends)
+console.log(ruralFriends) //서울에 살지 않은 친구들을 담은 배열 
 
 //교수님답
 // const modifiedFriend = friends.filter(element => element.city !== 'seoul')
@@ -110,7 +110,7 @@ const friends3 = [
     {name: 'nana', age: 24, city: 'busan'},
     {name: 'dannel', age: 19, city: 'seoul'},
 ]
-const myFrineds3=[]
+const myFrineds3=[] //빈 배열 
 
 function comparedAge(a,b){ //나이순으로 정렬 
     return a.age - b.age
@@ -119,8 +119,8 @@ friends3.sort(comparedAge)
 //console.log(friends3)
 
 friends3.forEach((a)=>{
-    if(a.age < 30){
-        myFrineds3.push(a)
+    if(a.age < 30){ //30보다 적은 사람만
+        myFrineds3.push(a) //빈 배열에 추가 
     }
 })
 console.log(myFrineds3)
