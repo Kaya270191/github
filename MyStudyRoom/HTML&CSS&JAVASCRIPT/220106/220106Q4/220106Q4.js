@@ -80,3 +80,32 @@ Without you \n
 `
 
 
+const arrayLyrics = lyrics.split('') //가사를 문자로 잘라서 배열로 반환 
+console.log(arrayLyrics)
+
+
+let shouldWord = false //입력받은 것 확인
+let keyword = '' //키워드 값 초기화
+
+function searchWords(e){ //입력한 내용
+    console.log(e.target.value)
+    shouldWord = e.target.value !== '' //무언가를 입력하면 true가 되어 다음 문장이 실행 
+    keyword = e.target.value //입력한 것을 담는 변수 
+
+    const newWords = filterWords(arrayLyrics, keyword)
+
+}
+
+function filterWords(arrayLyrics, keyword){
+    let newLyrics = [...arrayLyrics] // 원본배열을 함수 내부에서 지역변수에 복사
+    console.log(newLyrics)
+    //newLyrics = newLyrics.filter(word == keyword)
+
+    
+
+}
+
+
+
+
+searchEl.addEventListener('input', searchWords)

@@ -19,10 +19,10 @@ friends.sort((a,b) => { //도시별로 정렬
     if(a.city > b.city) return -1
     return 0 
 })
-console.log(friends)
+// console.log(friends)
 
 const sliceFriends = friends.slice(0,5) //0번째부터 5번째 전까지 자르기->서울사람들
-console.log(sliceFriends)
+// console.log(sliceFriends)
 
 sliceFriends.sort((a,b) => { //나이순으로 정렬 
     return a.age - b.age
@@ -147,7 +147,7 @@ Let me live it how I wanna \n
 내 걱정은 no thanks (thank you) \n
 I am
 `
-// 구현하기
+// //구현하기
 // const modifiedSentence = lyrics //가사를
 //                         .split(' ') //빈 칸 기준으로 나눠서 배열에 저장
 //                         .map(word =>{ //배열의 요소별로 하나씩 도는데
@@ -215,48 +215,50 @@ the daily press, I knew little of my former friend
 and companion.
 `
 
-const classified = {} //알파벳의 사용빈도를 저장하는 변수
-const specialCharacters = '`~!@#$%^&*()-_=+|\<>,.?/:;\'"—’' //특수문자인 경우 사용빈도 검사에서 제외하기 위한 변수
-const alphabetFrequency = []
+// const classified = {} //알파벳의 사용빈도를 저장하는 변수
+// const specialCharacters = '`~!@#$%^&*()-_=+|\<>,.?/:;\'"—’' //특수문자인 경우 사용빈도 검사에서 제외하기 위한 변수
+// const alphabetFrequency = []
 
-// 구현하기
-const novelLowercase= novel.toLowerCase() //소문자로 만들기 
-//console.log(novelLowercase)
-const str = ''
-const splitedSentence = novelLowercase.split('') //각각의 문자로 자름 
-//console.log(splitedSentence)
+// // 구현하기
+// const novelLowercase= novel.toLowerCase() //소문자로 만들기 
+// //console.log(novelLowercase)
+// const str = ''
+// const splitedSentence = novelLowercase.split('') //각각의 문자로 자름 
+// //console.log(splitedSentence)
 
 
-splitedSentence.forEach((element)=>{//알파벳만 배열로 만들기 alphabetFrequency
-    if(element >= 'a' && element <= 'z'){
-        alphabetFrequency.push(element)
-    }
-})
-console.log(alphabetFrequency)
+// splitedSentence.forEach((element)=>{//알파벳만 배열로 만들기 alphabetFrequency
+//     if(element >= 'a' && element <= 'z'){
+//         alphabetFrequency.push(element)
+//     }
+// })
+// console.log(alphabetFrequency)
 
-alphabetFrequency.forEach((element) =>  { //객체classified{}에 겹치는 알파벳 카운트하기 
-    classified[element] = (classified[element] || 0)+1
-    //console.log(classified)
-})
+// alphabetFrequency.forEach((element) =>  { //객체classified{}에 겹치는 알파벳 카운트하기 
+//     classified[element] = (classified[element] || 0)+1
+//     //console.log(classified)
+// })
 
-//배열에 [{alpha:문자 , cnt:카운트숫자},...]
-const lastArray =[]
-for(key in classified){
-    const obj = { //객체 obj{alpha: 문자 , cnt:숫자}를 선언 
-        alpha : key, //객체의 키값
-        cnt : classified[key] //객체의 밸류값
-    }
-    lastArray.push(obj) //빈 배열에 객체를 넣기 
-}
-console.log(lastArray)
+// //배열에 [{alpha:문자 , cnt:카운트숫자},...]
+// const lastArray =[]
+// for(key in classified){
+//     const obj = { //객체 obj{alpha: 문자 , cnt:숫자}를 선언 
+//         alpha : key, //객체의 키값
+//         cnt : classified[key] //객체의 밸류값
+//     }
+//     lastArray.push(obj) //빈 배열에 객체를 넣기 
+// }
+// console.log(lastArray)
 
-lastArray.sort((a,b)=>{ // cnt의 내림차순 순으로 정렬 
-    return b.cnt-a.cnt 
-})
-console.log(lastArray)
+// lastArray.sort((a,b)=>{ // cnt의 내림차순 순으로 정렬 
+//     return b.cnt-a.cnt 
+// })
+// console.log(lastArray)
 
-lastArray.forEach((element)=>{ //키와 밸류값만 꺼내서 출력 
-    console.log(`${element.alpha} : ${element.cnt}`)
-})
+// lastArray.forEach((element)=>{ //키와 밸류값만 꺼내서 출력 
+//     console.log(`${element.alpha} : ${element.cnt}`)
+// })
+
+
 
 
