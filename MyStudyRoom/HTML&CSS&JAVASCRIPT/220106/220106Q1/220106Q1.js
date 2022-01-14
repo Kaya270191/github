@@ -19,15 +19,28 @@ friends.sort((a,b) => { //도시별로 정렬
     if(a.city > b.city) return -1
     return 0 
 })
-// console.log(friends)
+console.log(friends)
 
 const sliceFriends = friends.slice(0,5) //0번째부터 5번째 전까지 자르기->서울사람들
-// console.log(sliceFriends)
+console.log(sliceFriends)
 
 sliceFriends.sort((a,b) => { //나이순으로 정렬 
     return a.age - b.age
 })
 console.log(sliceFriends)
+
+//교수님 답
+// const friendsFiltered = friends
+//     .sort((f1, f2)=>{
+//         if(f1.city > f2.city) return 1
+//         if(f1.city < f2.city) return -1
+
+//         if(f1.age > f2.age) return 1
+//         if(f1.age < f2.age) return -1
+
+//         else return 0
+//     })
+//     .slice(friends.findIndex((friend)=> friend.city.indexOf("seoul") >-1)
 
 
 //* 연습과제 2
@@ -162,6 +175,22 @@ I am
 // rootDiv.innerHTML = modifiedSentence
 
 
+//교수님 답
+// const modifiedSentence = lyrics
+// .split(' ')
+// .map(word => {
+//     if(word.includes('shit')|| word.includes('똥')){
+//         return `💩`
+//     }
+//     else if (word.includes('fuck')){
+//         return `❤️`
+//     }
+//     else return word
+// })
+// .join(' ')
+// console.log(modifiedSentence)
+// rootDiv.innerHTML = modifiedSentence
+
 
 
 
@@ -215,9 +244,9 @@ the daily press, I knew little of my former friend
 and companion.
 `
 
-// const classified = {} //알파벳의 사용빈도를 저장하는 변수
-// const specialCharacters = '`~!@#$%^&*()-_=+|\<>,.?/:;\'"—’' //특수문자인 경우 사용빈도 검사에서 제외하기 위한 변수
-// const alphabetFrequency = []
+const classified = {} //알파벳의 사용빈도를 저장하는 변수
+const specialCharacters = '`~!@#$%^&*()-_=+|\<>,.?/:;\'"—’' //특수문자인 경우 사용빈도 검사에서 제외하기 위한 변수
+const alphabetFrequency = []
 
 // // 구현하기
 // const novelLowercase= novel.toLowerCase() //소문자로 만들기 
@@ -260,5 +289,23 @@ and companion.
 // })
 
 
+//교수님 답
+novel
+.split('')
+.forEach(c =>{
+    const cl = c.toLowerCase() //소문자로 변경
+    if(specialCharacters.includes(cl)||cl === '\n' || cl === ' ') return 
+    if(!classified[cl]) classified[cl] = 0
+    classified[cl]++  
+})
+console.log(classified)
+
+for(let c in classified){
+    alphabetFrequency.push({alphabet: c, cnt: classified[c]})
+}
+alphabetFrequency.sort((a,b)=>b.cnt - a.cnt) //빈도수로 내림차순 정렬
+console.log(alphabetFrequency) 
+
+alphabetFrequency.forEach(obj => console.log(obj.alphabet, ':', obj.cnt))
 
 

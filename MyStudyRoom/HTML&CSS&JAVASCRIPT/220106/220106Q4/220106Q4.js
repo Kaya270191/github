@@ -1,8 +1,8 @@
 //사용자가 입력창에 검색어를 입력하면 캡쳐화면과 같이 하이라이트가 적용되게 해보자! 
 //검색어 하이라이트 기능 구현에서 대소문자 구분은 하지 않는다. 
 
-const lyricsEl = document.getElementById('lyrics')
-const searchEl = document.getElementById('search')
+const lyricsEl = document.getElementById('lyrics') //가사를 랜덩을 하는 위치
+const searchEl = document.getElementById('search') //인풋창
 
 const lyrics = `
 어느새 빗물이 \n
@@ -80,32 +80,68 @@ Without you \n
 `
 
 
-const arrayLyrics = lyrics.split('') //가사를 문자로 잘라서 배열로 반환 
-console.log(arrayLyrics)
+// const arrayLyrics = lyrics.split('') //가사를 문자로 잘라서 배열로 반환 
+// console.log(arrayLyrics)
 
 
-let shouldWord = false //입력받은 것 확인
-let keyword = '' //키워드 값 초기화
+// let shouldWord = false //입력받은 것 확인
+// let keyword = '' //키워드 값 초기화
 
-function searchWords(e){ //입력한 내용
-    console.log(e.target.value)
-    shouldWord = e.target.value !== '' //무언가를 입력하면 true가 되어 다음 문장이 실행 
-    keyword = e.target.value //입력한 것을 담는 변수 
+// function searchWords(e){ //입력한 내용
+//     console.log(e.target.value)
+//     shouldWord = e.target.value !== '' //무언가를 입력하면 true가 되어 다음 문장이 실행 
+//     keyword = e.target.value //입력한 것을 담는 변수 
 
-    const newWords = filterWords(arrayLyrics, keyword)
+//     const newWords = filterWords(arrayLyrics, keyword)
 
+// }
+
+// function filterWords(arrayLyrics, keyword){
+//     let newLyrics = [...arrayLyrics] // 원본배열을 함수 내부에서 지역변수에 복사
+//     console.log(newLyrics)
+//     //newLyrics = newLyrics.filter(word == keyword) 
+
+// }
+
+// searchEl.addEventListener('input', searchWords)
+
+
+//교수님 답
+
+
+function displayLyric(str){
+    lyricsEl.innerHTML = str //화면에 보여주기 
 }
 
-function filterWords(arrayLyrics, keyword){
-    let newLyrics = [...arrayLyrics] // 원본배열을 함수 내부에서 지역변수에 복사
-    console.log(newLyrics)
-    //newLyrics = newLyrics.filter(word == keyword)
 
-    
 
+function highLightKeyword(e){
+    const keyword = e.target.value // 사용자 입력 
+
+    if(keyword !== ''){
+        //하이라이트 기능 작동
+        const modifiedLyrics = lyrics
+        .split(' ')
+        .map(word =>{
+            //가사가 사용자 검색어를 포함하면 
+            if(word.toLowerCase().includes(keyword.toLowerCase())){
+                return `<div class='highlight'>${word}</div>`
+            } 
+            else{
+                return word
+            }})
+        .join(' ')
+
+    displayLyric(modifiedLyrics) //하이라이트 적용된 가사 보여주기 
+
+    }
+    else{
+        //화면에 그냥 가사 디스플레이
+        displayLyric(lyrics)
+    }
 }
 
+displayLyric(lyrics)//화면 초기 랜더링
 
+searchEl.addEventListener('input', highLightKeyword)
 
-
-searchEl.addEventListener('input', searchWords)
