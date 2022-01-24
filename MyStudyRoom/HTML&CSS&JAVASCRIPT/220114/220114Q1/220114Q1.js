@@ -83,40 +83,52 @@ console.log(fruits1)
 
 const graph = document.getElementById('graph')
 
-const points = []
-const dx = 1 // degree
+let points = [] // 포인트 배열
 let x = 0 // degree
-let y = 0
-let radx = 0 // radian
+let offset = 0 // 추출 시작점
 
-// 다음 (X,Y) 포인트 값 계산
-function getNextPoint(){
-    radx = x * (Math.PI / 180)
-    y = Math.sin(radx)
-    points.push([x, y])//point 배열에 x,y 점의 좌표가 들어간 다른[] 추가 
-    x += dx //1도씩 증가 
-    // console.log(points)
+function degreeToRad(x){ //degree(0~360도) -> radian(0~2파이)
+    return x * (Math.PI / 180)
+}
+function calSinVal(x){ //radian 값으로 sin 구하기
+    return Math.sin(x)
+}
+function clearWindow(el){
+    el.innerHTML = '' //초기화
+}
+function getPoint(x){
+    return [x, calSinVal(degreeToRad(x))] //배열을 리턴 (점의 좌표)
+}
+function isArrayFull(len){ 
+    return len > 360 //배열의 길이가 360다 큰지 확인 
 }
 
-
-// (X,Y) 포인트 값으로부터 DOM 객체 생성 및 화면에 표시
 function displayPoint(point){
+    const [x, y] = point
+    const xScale = 2, yScale = 100, yShift = 100 //y 좌표 이동
+
     const pointEl = document.createElement('div')
     pointEl.className = 'dot'
-    pointEl.style.left = `${point[0] * 2}px` // x-scale: 2배
-    pointEl.style.top = `${point[1]* 100 * -1 + 100}px` // y-scale : 100배 (반전 + 좌표이동)
+    pointEl.style.left = `${(x - offset) * xScale}px` // x-scale: 2배 (offset 만큼 좌표이동)
+    pointEl.style.top = `${(y* yScale) * -1 + yShift}px` // y-scale : 100배 (반전 + 좌표이동)
     graph.appendChild(pointEl)
 }
 
-// (X,Y) 포인트 값을 요소로 가지는 2차원 배열 생성
-for(let i=0; i<360; i++){
-    getNextPoint()
+function redraw(){
+    clearWindow(graph) //초기화 
+    
+    points.push(getPoint(x)) // 포인츠 배열에 포인트 추가
+    x++ // 그 다음 포인트를 가져오기 위해 x 좌표 변경
+
+    if(isArrayFull(points.length)){
+        points.shift() // 첫번째 요소를 제거함으로써 360개 유지
+        offset++ //  offset 증가
+    }
+    points.forEach(displayPoint) // 화면에 그래프 그리기
+  
 }
-console.log(points)
 
-points.forEach(displayPoint)
-
-
+setInterval(redraw, 5) 
 
 
 
@@ -126,9 +138,6 @@ points.forEach(displayPoint)
 //(단, sign5 를 보여준 다음에는 다시 sign1을 보여줘야 한다.)
 
 const signDiv = document.getElementById('sign')
-
-const signDiv2 = document.createElement('div')
-signDiv.append(signDiv2)
 
 const sign1 = [
     [0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
@@ -193,47 +202,33 @@ const sign5 = [
 
 const signs = [sign1, sign2, sign3, sign4, sign5]
 let index = 0
-//const signsTest = signs[0]
 
 
-// 구현하기
-function displaySign(value){
-
-    
+function displayCell(value){ //div 생성 함수 
     const cellEl = document.createElement('div')
     cellEl.className = value === 0 ? 'cell' : 'cell bright'
-    signDiv2.appendChild(cellEl)
-
-
+    signDiv.appendChild(cellEl)
 }
 
-function test() {
-    console.log(index)
-    copysign = signs[index]
-
-    let rows = copysign.length
-    let columns = copysign[0].length
+function displaySign(sign){
+    const rows = sign.length //배열의 길이 
+    const columns = sign[0].length //배열의 행의 길이 
 
     for(let i=0; i<rows; i++){
         for(let j=0; j<columns; j++){
-            displaySign(copysign[i][j])
+            displayCell(sign[i][j])
         }
     }
-
-    if(index >= signs.length-1){
-        index = 0
-    }else{
-        index += 1
-    }
-  }
-
-
-function setWord(){
-    //단어를 5개 보여주면 
 }
 
-setInterval(test, 1000);
+function redraw(){
+    const sign = signs[index % signs.length] //인덱스를 배열의 길이로 나눈 나머지가 사인 배열의인자
+    signDiv.innerHTML = '' // 화면 초기화
+    displaySign(sign)
+    index++
+}
 
+setInterval(redraw, 1000) //setInterval 로 1초마다 redraw 함수 호출 
 
 
 
