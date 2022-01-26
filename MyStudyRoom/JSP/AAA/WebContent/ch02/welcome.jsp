@@ -14,7 +14,7 @@
 <body>
 
 <%--인클루드 디렉티브 태그: JSP 특정영역에 외부파일 내용을 포함 --%>
-<%@ include file = "menu.jsp" %> 
+<%@ include file = "menu1.jsp" %> 
 
 
 <%--선언문 %! : 자바 변수나 메소드 정의 --%>
@@ -60,7 +60,7 @@
 	
 	
 <%--인클루드 디렉티브 태그: JSP 특정영역에 외부파일 내용을 포함 --%>
-<%@ include file ="footer.jsp" %>
+<%@ include file ="footer1.jsp" %>
 
 </body>
 </html>
