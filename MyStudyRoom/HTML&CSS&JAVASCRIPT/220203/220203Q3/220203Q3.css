@@ -1,0 +1,13 @@
+.root{
+    display: flex;
+    flex-direction: row;
+}
+.circle{
+    background-color:  orange;
+    color: aliceblue;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    /* text-align: center; */
+    
+}
