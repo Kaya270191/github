@@ -173,12 +173,15 @@
 
 
 
-//객체 프로퍼티 존재유무 판별
-console.log('price' in book) //book 객체에 price 프로퍼티가 있는지 확인
-console.log('title' in book) //book 객체에 title 프로퍼티가 있는지 확인
 
-console.log(book.hasOwnProperty('price')) //book 객체에 price 프로퍼티가 있는지 확인
-console.log(book.hasOwnProperty('title')) //book 객체에 title 프로퍼티가 있는지 확인
+
+
+//객체 프로퍼티 존재유무 판별
+// console.log('price' in book) //book 객체에 price 프로퍼티가 있는지 확인
+// console.log('title' in book) //book 객체에 title 프로퍼티가 있는지 확인
+
+// console.log(book.hasOwnProperty('price')) //book 객체에 price 프로퍼티가 있는지 확인
+// console.log(book.hasOwnProperty('title')) //book 객체에 title 프로퍼티가 있는지 확인
 
 
 
@@ -192,8 +195,20 @@ console.log(book.hasOwnProperty('title')) //book 객체에 title 프로퍼티가
 // }
 
 
-// book ={...book, release: '2022-01-17'}
+// book = {...book, release: '2022-01-17'}//스프레드 연산자
 // console.log(book)
+
+// book.name ='javascript2'//점 표기법
+// console.log(book)
+
+// book['autbors'] ='jake' //대괄호 표기법
+// console.log(book)
+
+
+//프로퍼티 값 삭제
+// delete book.name
+// console.log(book)
+
 
 
 // //객체 복사
@@ -205,12 +220,12 @@ console.log(book.hasOwnProperty('title')) //book 객체에 title 프로퍼티가
 //     authors: ['mark', 'victoria']
 // }
 
-// const target = Object.assign({}, book)
+// const target = Object.assign({}, book) //빈 객체인 target 에 book 복사 
 // const target2 = {...book}
 
 
-// book.price = 3200 //book 객체의 price 프로퍼티 변경 
-// book.authors[0] = 'jojo' 
+// book.price = 3200 //book 객체의 price 프로퍼티 변경. target의 price 프로퍼티는 변경안됨 
+// book.authors[0] = 'jojo' //book 객체의 배열의 요소를 변경하면 복사한 target 객체의 배열의 요소도 변경됨
 
 // console.log(book) 
 // console.log(target) //얕은 복사를 한 객체는 프로퍼티가 변경이 안됨 
@@ -229,6 +244,8 @@ console.log(book.hasOwnProperty('title')) //book 객체에 title 프로퍼티가
 // const target1 = JSON.parse(JSON.stringify(book1))
 
 // book1.authors[0] ='변경'
+// book1.name = 'goodLife'
+// target1.price = 2200
 // console.log(book1)
 // console.log(target1)
 
