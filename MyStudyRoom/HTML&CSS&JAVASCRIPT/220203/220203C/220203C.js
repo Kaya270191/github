@@ -1,5 +1,13 @@
-//객체 리터럴 
+//객체의 구조
+// const obj = {
+//     name: 1,
+//     age: 2,
+//     nationality: 3, 
+// }
+// console.log(obj)
 
+
+//객체 리터럴 
 // const book ={
 //     name: 'javascript',
 //     price: 21000,
@@ -15,6 +23,10 @@
 // }
 
 // book.getInfo()
+// console.log(book.name)
+// console.log(book.authors[1])
+// console.log(book.release)
+
 
 
 //생성자 함수
@@ -43,6 +55,7 @@
 //     ['mark', 'victoria']
 // )
 // book.getInfo()
+// console.log(book.authors)
 
 
 //프로토타입
@@ -107,13 +120,13 @@
 //     }
 // }
 
-// const book1 = new Book(
+// const book1 = new Book( //객체 생성
 //     'javascript',
 //     21000,
 //     '2019-12-03',
 //     ['mark', 'victoria']
 // )
-// const book2 = new Book(
+// const book2 = new Book( //객체 생성 
 //     'python',
 //     18700,
 //     '2022-01-07',
@@ -143,20 +156,29 @@
 //     authors: ['mark', 'victoria']
 // }
 
+// console.log(book.name) // 점 표기법
+// console.log(book.authors[0]) //점 표기법 
+
+// console.log(book['name']) //대괄호 표기법
+// console.log(book['price']) 
+// console.log(book['release'])
+// console.log(book['authors'])
+// console.log('저자: ', book['authors'].join(', '))
+
 // for(let key of Object.keys(book)){
 //     console.log(key, book[key]) //키와 밸류 값 
 // }
-
 // console.log(Object.keys(book)) //객체 프로퍼티 추출 후 배열로 반환
 // console.log(Object.values(book))//객체 프로퍼티 값 추출 후 배열로 반환
 
 
-// //객체 프로퍼티 존재유무 판별
-// console.log('price' in book) //book 객체에 price 프로퍼티가 있는지 확인
-// console.log('title' in book) //book 객체에 title 프로퍼티가 있는지 확인
 
-// console.log(book.hasOwnProperty('price')) //book 객체에 price 프로퍼티가 있는지 확인
-// console.log(book.hasOwnProperty('title')) //book 객체에 title 프로퍼티가 있는지 확인
+//객체 프로퍼티 존재유무 판별
+console.log('price' in book) //book 객체에 price 프로퍼티가 있는지 확인
+console.log('title' in book) //book 객체에 title 프로퍼티가 있는지 확인
+
+console.log(book.hasOwnProperty('price')) //book 객체에 price 프로퍼티가 있는지 확인
+console.log(book.hasOwnProperty('title')) //book 객체에 title 프로퍼티가 있는지 확인
 
 
 
@@ -174,39 +196,39 @@
 // console.log(book)
 
 
-//객체 복사
-//1. 얕은 복사 : 프로퍼티의 배열이나 객체의 주소값만 복사
-const book = {
-    name: 'javascript',
-    price: 21000,
-    release: '2019-12-03',
-    authors: ['mark', 'victoria']
-}
+// //객체 복사
+// //1. 얕은 복사 : 프로퍼티의 배열이나 객체의 주소값만 복사
+// const book = {
+//     name: 'javascript',
+//     price: 21000,
+//     release: '2019-12-03',
+//     authors: ['mark', 'victoria']
+// }
 
-const target = Object.assign({}, book)
-const target2 = {...book}
-
-
-book.price = 3200 //book 객체의 price 프로퍼티 변경 
-book.authors[0] = 'jojo' 
-
-console.log(book) 
-console.log(target) //얕은 복사를 한 객체는 프로퍼티가 변경이 안됨 
+// const target = Object.assign({}, book)
+// const target2 = {...book}
 
 
+// book.price = 3200 //book 객체의 price 프로퍼티 변경 
+// book.authors[0] = 'jojo' 
+
+// console.log(book) 
+// console.log(target) //얕은 복사를 한 객체는 프로퍼티가 변경이 안됨 
 
 
-//2. 깊은 복사 : 프로퍼티의 배열이나 객체의 내부 요소까지 복사
-const book1 = {
-    name: 'javascript',
-    price: 21000,
-    release: '2019-12-03',
-    authors: ['mark', 'victoria']
-}
 
-const target1 = JSON.parse(JSON.stringify(book1))
 
-book1.authors[0] ='변경'
-console.log(book1)
-console.log(target1)
+// //2. 깊은 복사 : 프로퍼티의 배열이나 객체의 내부 요소까지 복사
+// const book1 = {
+//     name: 'javascript',
+//     price: 21000,
+//     release: '2019-12-03',
+//     authors: ['mark', 'victoria']
+// }
+
+// const target1 = JSON.parse(JSON.stringify(book1))
+
+// book1.authors[0] ='변경'
+// console.log(book1)
+// console.log(target1)
 

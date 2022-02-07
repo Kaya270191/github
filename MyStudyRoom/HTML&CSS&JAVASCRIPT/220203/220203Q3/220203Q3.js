@@ -6,11 +6,11 @@ const glasses = [true, false]
 const heights = [150, 160, 170, 180, 190, 200]
 const weights = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150]
 
-function randomPick(list){
+function randomPick(list){ //특정 배열에서 랜덤으로 특징 추출하는 함수 
     return Math.floor(Math.random()*list.length)
 }
 
-function Person(){
+function Person(){ //생성자 함수 
     this.hairColor = hairColors[randomPick(hairColors)]
     this.hairType = hairTypes[randomPick(hairTypes)]
     this.glasse = glasses[randomPick(glasses)]
@@ -19,10 +19,10 @@ function Person(){
 }
 
 
-const personList = [] //객체를 담을 groupA 빈 리스트 
+const personList = [] //객체를 담을 빈 리스트 
 
 for(let i=0; i<10000; i++){
-    personList.push(new Person())
+    personList.push(new Person()) //리스트에 객체 생성해서 넣기 
 }
 console.log(personList)
 
