@@ -33,7 +33,7 @@
 
 
 //함수 정의방식(1.함수선언 2. 함수표현식, 3. 화살표 함수)
-//const launguage = ['korean', 'japanese', 'english', 'chinese', 'russian']
+// const launguage = ['korean', 'japanese', 'english', 'chinese', 'russian']
 
 //1. 함수선언 : 호이스팅 가능 
 //입력값: 배열
@@ -62,7 +62,7 @@
 //     return copiedArr
 // }
 // const copiedArr = copyArr(launguage)
-// console.log('check array is same: ', launguage === copiedArr)
+// console.log('check array is same: ', launguage === copiedArr) //주소값이 다르기 때문에 false
 // console.log(copiedArr)
 
 //3. 화살표 함수
@@ -83,30 +83,50 @@
 
 
 
+
+//함수 선언과 함수표현식 차이점 : 함수 선언(function)한 함수는 정의 전에 호출 가능함 
+//함수 선언(function)으로 정의한 함수는 키워드로 정의하기 전에 호출 가능 
+// const launguage = ['korean', 'japanese', 'english', 'chinese', 'russian']
+
+// const copiedArr = copyArr(launguage) //함수 호출
+// console.log(copiedArr)
+
+// function copyArr(arr){ //함수 정의 
+//     const copiedArr = []
+
+//     for(let element of arr){
+//         copiedArr.push(element)
+//     }
+
+//     return copiedArr
+//}
+
+
+
+
 //함수선언과 화살표 함수 차이점
+
 //1. this 2. 생성자함수로 사용가능 여부 3. arguments
 // const music = {
 //     name: '금요일에 만나요',
 //     artist: 'IU',
 //     release: '2013-12-20',
 //     info(){ //this 는 music을 가리킴
+//         console.log(this)
 //         console.log(`${this.name} - ${this.artist} 는 ${this.release} 에 발매되었다.`)
 //     }
 // }
 
-//music.info()
+// music.info()
 
 
-// this.name = '보고 싶다'
-// this.artist = '김범수'
-// this.release = '2002-12-17'
 
 
 // const music = {
 //     name: '금요일에 만나요',
 //     artist: 'IU',
 //     release: '2013-12-20',
-//     info: ()=>{ //화살표함수에서 this 는 윈도우객체를 가리킴  
+//     info: ()=>{ //화살표함수에서 this 는 상위객체인  윈도우객체를 가리킴  
 //         //console.log(`${this.name} - ${this.artist} 는 ${this.release} 에 발매되었다.`)
 //         console.log(this) 
 //     }
@@ -137,10 +157,20 @@
 
 
 //화살표 함수는 new 키워드와 쓸 수 없음
-// function Music(){
+// function Music(){ //함수 선언 - new 키워드 사용 가능 
 //     this.name = '보고 싶다'
 //     this.artist = '김범수'
 //     this.release = '2002-12-17' 
+// }
+
+// const music = new Music()
+// console.log(music)
+
+
+// const Music = () => { //화살표함수 - new 키워드 사용 안됨 
+//     this.name = '보고 싶다'
+//     this.artist = '김범수'
+//     this.release = '2002-12-17'
 // }
 
 // const music = new Music()
@@ -148,11 +178,19 @@
 
 //함수 선언으로 정의한 함수는 arguments 객체(유사배열:객체와 배열의 중간단계) 사용 가능 
 
-// function add(a,b){
+// function add(a,b){ //함수선언
+//     console.log(arguments)
 //     console.log(arguments[0])
 //     console.log(arguments[1])
 // }
 // add('apple','banana')
+
+
+// const add = (a, b) => { //화살표함수 
+//     console.log(arguments) // arguments 객체
+// }
+
+// add("apple", 'banana')
 
 
 
@@ -167,7 +205,9 @@
 // }
 
 
+
 //함수의 파라미터 기본값 설정하기
+//함수에 파라미터가 두 개 들어와야 하는데 아닐 경우 초기값을 설정해줌 
 // function add(a,b){
 //     //타입체크
 //     if(typeof a === 'undefined') a=0
@@ -182,7 +222,7 @@
 
 // function add(a,b){
 //     //타입체크 
-//     a = typeof a !== 'undefined' ? a : 0
+//     a = typeof a !== 'undefined' ? a : 0 //파라미터 a의 타입이 undefined 이면 a , 아니면 0
 //     b = typeof b !== 'undefined' ? b : 0
 //     return a+b
 // }
@@ -192,6 +232,7 @@
 
 // function add(a,b){
 //     //타입체크
+//     // a, b 각각의 값이 truthy 값이면 인자로 주어진 값으로 설정되고, falsy 값이면 기본값을 0 으로 설정
 //     a = a||0
 //     b = b||0
 //     return a+b
@@ -209,10 +250,11 @@
 // console.log(add(3, 5)) // 8
 // console.log(add(3)) // 3
 // console.log(add()) // 0
-// console.log(add('', null)) // null
+// console.log(add('', null)) // null 
+//빈 문자열과 null 값은 undefined 가 아니므로 기본값 0 으로 설정되지 않고 않고 그대로 빈 문자열과 null 값을 더한다.
 
 
-// function add(a = 0, b = 0, c = a + b){ //undefied인 경우 0으로 초기화함
+// function add(a = 0, b = 0, c = a + b){ //undefied인 경우 = 0으로 초기화함
 //     return a + b +c
 // }
 // console.log(add(3, 5, 7)) // 15
@@ -226,13 +268,14 @@
 //     return a>b
 // }
 // //기본값을 설정할때 다양한 타입의 값이 설정.문자열, 숫자, 논리형, 객체, 배열, 함수 등
-// function add(a = 'apple', b= false, c=a+b, d = isValid(a,b), e=3, f={name:'sun', age:23}, g=[3,4,5]){ 
-//     return a + b +c+d+e+f+g
+// function add(a = 'apple', b = false, c = a + b, d = isValid(a, b), e = 3, f = {name: 'sun', age: 23}, g = [3, 4, 5]){
+//     console.log(a,b,c,d,e,f,g)
+//     return a + b + c + d + e + f + g
 // }
 
-// console.log(3,5,7,9,11,13,15)
+// console.log(add(3, 5, 7, 9, 11, 13, 15)) 
 // console.log(add(3, 2)) 
-// console.log(add()) 
+// console.log(add()) //매개변수가 없으면 설정해놓은 기본값으로 됨 
 // console.log(add('', null))
 
 
@@ -248,8 +291,9 @@
 // console.log(add('', null))
 
 
+//제일 많이 쓰는 방법
 // function add(a,b){
-//     //a,b 값이 null 또는 undefined 인 경우에 0으로 초기화 
+//     //ull 과 undefined 이외에 falsy 값(빈 문자열 포함)도 기본값으로 설정
 //     a = a || 0
 //     b = b || 0
 //     return a+b
@@ -262,36 +306,37 @@
 
 //함수 파라미터 유효성 검증하기
 // 배열 복사하기
-function copyArr(arr){
-    if(!Array.isArray(arr)) return //인자가 배열이 아니면 아무것도 안함 
-    if(arr.length === 0) return // 빈 배열인 경우도 아무것도 안함 
+// function copyArr(arr){
+//     //유효성 검증
+//     if(!Array.isArray(arr)) return //인자가 배열이 아니면 아무것도 안함 
+//     if(arr.length === 0) return // 빈 배열인 경우도 아무것도 안함 
 
-    const copiedArr = []
+//     const copiedArr = []
 
-    for(let element of arr){
-        copiedArr.push(element)
-    }
+//     for(let element of arr){
+//         copiedArr.push(element)
+//     }
 
-    return copiedArr
-}
+//     return copiedArr
+// }
 
-const copiedArr = copyArr()
-//console.log(copiedArr)
+// const copiedArr = copyArr() 
+// //console.log(copiedArr)
 
-//테스트 케이스
-const copiedArr1 = copyArr(3)
-const copiedArr2 = copyArr('apple')
-const copiedArr3 = copyArr(false)
-const copiedArr4 = copyArr([])
-const copiedArr5 = copyArr({})
-const copiedArr6 = copyArr(null)
+// //테스트 케이스
+// const copiedArr1 = copyArr(3)
+// const copiedArr2 = copyArr('apple')
+// const copiedArr3 = copyArr(false)
+// const copiedArr4 = copyArr([3])
+// const copiedArr5 = copyArr({})
+// const copiedArr6 = copyArr(null)
 
-console.log(copiedArr1)
-console.log(copiedArr2)
-console.log(copiedArr3)
-console.log(copiedArr4)
-console.log(copiedArr5)
-console.log(copiedArr6)
+// console.log(copiedArr1)
+// console.log(copiedArr2)
+// console.log(copiedArr3)
+// console.log(copiedArr4)
+// console.log(copiedArr5)
+// console.log(copiedArr6)
 
 
 
@@ -312,6 +357,7 @@ console.log(copiedArr6)
 // console.log(add(1, 2, 3))
 // console.log(add(1, 2, 3, 4))
 // console.log(add(1, 2, 3, 4, 5))
+
 
 // function sortByOrder(flag, ...args){//flag 는 첫번째 인자, 나머지는 args 배열에 담김
 //     args.sort((a,b) => flag*(a-b))
