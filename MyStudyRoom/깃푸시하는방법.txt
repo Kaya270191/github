@@ -24,8 +24,8 @@ kayaRoom 안에 들어가서 빈칸에서  마우스 우클릭 Git Bash here 누
 git status  
 git add .
 git commit -am "변경사항이름"
-git remote -v 
-git push 내가쓸이름 main
+git remote -v       : 깃배시 창에서 뜨는 이름= 내가쓸이름(origin) 
+git push 내가쓸이름 브랜치명      	:브랜치명이 master인지 main인지 확인(깃허브에서) 
 
 
 
