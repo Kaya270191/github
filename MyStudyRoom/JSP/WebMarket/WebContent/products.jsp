@@ -1,17 +1,17 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dto.Product" %>
-<jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session" />
+<%@ page import ="dao.ProductRepository" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<link rel ="stylesheet" 
-href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel ="stylesheet" href="./resources/css/hootstrap.min.css" />
 
 <meta charset="EUC-KR">
 <title>상품 목록</title>
 </head>
+
 <body>
 	<jsp:include page="menu.jsp" />
 	<div class="jumbotron">
@@ -19,20 +19,31 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 			<h1 class="display-3">상품 목록</h1>
 		</div>
 	</div>
+			
 	
 	<%
-		ArrayList<Product> listOfProducts = productDAO.getAllProducts();
+		ProductRepository dao = ProductRepository.getInstance();
+		ArrayList<Product> listOfProducts = dao.getAllProducts();
+	
 	%>
+	
+	
 	<div class="container">
 		<div class="row" align="center">
 			<%
 				for (int i=0; i<listOfProducts.size(); i++){
 					Product product = listOfProducts.get(i);
 			%>
+			
 		<div class="col-md-4">
+			<img src="./resources/images/<%=product.getFilename() %>" style="width: 100%">
 			<h3><%=product.getPname()%></h3>
 			<p><%=product.getDescription() %>
 			<p><%=product.getUnitPrice() %>원
+			
+			<%--제품 상세 정보 버튼 만들기  --%>
+			<p> <a href="./product.jsp?id=<%=product.getProductId() %>"
+			class="btn btn-secondary" role="button"> 상세정보 &raquo;></a>
 		</div>
 		<%
 			}
