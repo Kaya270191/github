@@ -7,7 +7,7 @@
 <html>
 <head>
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	href=" ./resources/css/bootstrap.min.css" />
 <meta charset="EUC-KR">
 <title>제품 상세 정보</title>
 </head>
@@ -27,6 +27,11 @@
 	
 	<div class="container">
 		<div class ="row">
+			<div class="col-md-5">
+				<img src="/productImages/<%=product.getFilename()%>" style="width:100%, height: 100px" >
+				
+			</div>
+		
 			<div class ="col-md-6">
 			<h3><%=product.getPname() %></h3>
 			<p><%= product.getDescription() %>

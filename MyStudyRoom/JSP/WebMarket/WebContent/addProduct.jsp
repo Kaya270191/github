@@ -3,7 +3,7 @@
 <html>
 <head>
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	href="./resources/css/bootstrap.min.css">
 <meta charset="EUC-KR">
 
 <title>상품 등록</title>
@@ -12,10 +12,17 @@
 	<jsp:include page="menu.jsp" />
 	<div class="jumbotron">
 		<div class="container">
+			<for name="newProduct" action="./processAddProduct.jsp"
+			class="from-horizontal" method="post" enctype="multipart/form-data">
+		
 		<h1 class = "display-3">상품 등록</h1>
 		</div>
 	</div>
 	<div class="container">
+		<div class="text-right">
+			<a href="logout.jsp" class="btn btn-sm btn-success pull-right">logout</a>
+		</div>
+	
 	<form name="newProduct" action="./processAddProduct.jsp" class="form-horizontal" method="post">
 		<div class="form-group row">
 			<label class="col-sm-2">상품 코드</label>
@@ -68,8 +75,9 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-sm-offset-2 col-sm-10">
-				<input type="submit" class="btn btn-primary" value="등록">
+			<label class="col-sm-2">이미지</label>
+			<div class="col-sm-5">
+				<input type="file" name="productImage" class="form-control">
 			</div>
 		</div>
 	</form>

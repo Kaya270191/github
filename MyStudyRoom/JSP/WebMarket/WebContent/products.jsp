@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel ="stylesheet" href="./resources/css/hootstrap.min.css" />
+<link rel ="stylesheet" href="./resources/css/bootstrap.min.css" />
 
 <meta charset="EUC-KR">
 <title>상품 목록</title>
@@ -29,6 +29,7 @@
 	
 	
 	<div class="container">
+		
 		<div class="row" align="center">
 			<%
 				for (int i=0; i<listOfProducts.size(); i++){
@@ -36,7 +37,7 @@
 			%>
 			
 		<div class="col-md-4">
-			<img src="./resources/images/<%=product.getFilename() %>" style="width: 100%">
+			<img src="/productImages/<%=product.getFilename() %>" style="width: 100%">
 			<h3><%=product.getPname()%></h3>
 			<p><%=product.getDescription() %>
 			<p><%=product.getUnitPrice() %>원
@@ -48,6 +49,7 @@
 		<%
 			}
 		%>
+		</div>
 	</div>
 	<hr>
 	<jsp:include page="footer.jsp" />
