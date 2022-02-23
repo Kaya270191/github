@@ -24,7 +24,6 @@
 	<%
 		ProductRepository dao = ProductRepository.getInstance();
 		ArrayList<Product> listOfProducts = dao.getAllProducts();
-	
 	%>
 	
 	

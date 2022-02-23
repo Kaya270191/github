@@ -8,7 +8,7 @@ public class ProductRepository {
 	
 	private ArrayList<Product> listOfProducts = new ArrayList<Product>();
 	
-	//Ω≈±‘ ªÛ«∞ µ•¿Ã≈Õ∏¶ ¿˙¿Â«œ¥¬ ∏ﬁº“µÂ 
+	
 	private static ProductRepository instance = new ProductRepository();
 	
 	public static ProductRepository getInstance() {
@@ -16,7 +16,7 @@ public class ProductRepository {
 	}
 	
 	
-	public ProductRepository() { //±‚∫ªª˝º∫¿⁄ 
+	public ProductRepository() { 
 		Product phone = new Product("P1234", "iPhone 6s", 80000);
 		phone.setDescription("4.7-inch, 1334X750 Renina HD display, 8-megapixel iSight Camera");
 		phone.setCategory("Smart Phone");
@@ -25,7 +25,7 @@ public class ProductRepository {
 		phone.setCondition("New");
 		phone.setFilename("P1234.jpg");
 		
-		Product notebook = new Product("P1235", "LG PC ±◊∑•", 1500000);
+		Product notebook = new Product("P1235", "LG PC ÎÖ∏Ìä∏Î∂Å", 1500000);
 		notebook.setDescription("13.3-inch, IPS LED display, 5rd Generation Intel Core processors");
 		notebook.setCategory("Notebook");
 		notebook.setManufacturer("LG");
@@ -52,7 +52,7 @@ public class ProductRepository {
 	}
 
 	
-	//ªÛ«∞ ªÛºº ¡§∫∏∏¶ ∞°¡Æø¿¥¬ ∏ﬁº“µÂ 
+	
 	public Product getProductById(String productId) { 
 		Product productById = null; 
 		
@@ -68,6 +68,4 @@ public class ProductRepository {
 	public void addProduct(Product product) {
 		listOfProducts.add(product);
 	}
-
-	
 }
