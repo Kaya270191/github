@@ -1,56 +1,59 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="dto.Product" %>
-<%@ page import ="dao.ProductRepository" %>
+<%@ page import = "java.sql.*" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <link rel ="stylesheet" href="./resources/css/bootstrap.min.css" />
 
-<meta charset="EUC-KR">
 <title>상품 목록</title>
 </head>
 
 <body>
 	<jsp:include page="menu.jsp" />
+	
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">상품 목록</h1>
 		</div>
 	</div>
-			
-	
-	<%
-		ProductRepository dao = ProductRepository.getInstance();
-		ArrayList<Product> listOfProducts = dao.getAllProducts();
-	%>
-	
 	
 	<div class="container">
-		
 		<div class="row" align="center">
+			<%@ include file = "dbconn.jsp" %>
 			<%
-				for (int i=0; i<listOfProducts.size(); i++){
-					Product product = listOfProducts.get(i);
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				String sql = "select * from product";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while (rs.next()){
+			%>		
+	
+			<div class="col-md-4">
+				<img src="/productImages/<%=rs.getString("p_fileName") %>" style="width: 100%">
+				<h3><%=rs.getString("p_name")%></h3>
+				<p><%=rs.getString("p_description") %>
+				<p><%=rs.getString("p_UnitPrice") %>원
+				
+				<p> <a href="./product.jsp?id=<%=rs.getString("p_id") %>"
+					class="btn btn-secondary" role="button"> 상세정보 &raquo;></a>
+			</div>
+			<%
+					}
+			
+			if(rs != null)
+				rs.close();
+			if(pstmt != null)
+				pstmt.close();
+			if(conn != null)
+				conn.close(); 
 			%>
-			
-		<div class="col-md-4">
-			<img src="/productImages/<%=product.getFilename() %>" style="width: 100%">
-			<h3><%=product.getPname()%></h3>
-			<p><%=product.getDescription() %>
-			<p><%=product.getUnitPrice() %>원
-			
-			<%--제품 상세 정보 버튼 만들기  --%>
-			<p> <a href="./product.jsp?id=<%=product.getProductId() %>"
-			class="btn btn-secondary" role="button"> 상세정보 &raquo;></a>
+		
+
 		</div>
-		<%
-			}
-		%>
-		</div>
+		<hr>
 	</div>
-	<hr>
 	<jsp:include page="footer.jsp" />
 
 </body>

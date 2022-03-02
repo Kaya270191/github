@@ -2,8 +2,8 @@
 <%@ page import="com.oreilly.servlet.*" %>
 <%@ page import="com.oreilly.servlet.multipart.*" %>
 <%@ page import ="java.util.*" %>
-<%@ page import ="dto.Product" %>
-<%@ page import ="dao.ProductRepository" %>
+<%@ page import ="java.sql.*" %>
+<%@ include file="dbconn.jsp" %>
 
 <%--신규 상품 등록 처리 페이지  --%>
 <%
@@ -13,6 +13,7 @@
 	String realFolder ="C:\\upload"; //웹 애플리케이션상의 절대 경로
 	int maxSize = 5 * 1024 * 1024; //최대 업로드될 파일의 크기 5MB
 	String encType = "utf-8"; //인코딩 유형 
+
 	
 	//폼 태그로 전달받은 request 내장객체를 MultipartRequest 의 형태의 객체로 만듦. 
 	//MultipartRequest: 웹 페이지에서 서버로 업로드되는 파일 자체만 다루는 클래스 (cos.jar 라이브러리 )
@@ -49,20 +50,25 @@
 	String fileName = multi.getFilesystemName(fname);
 	
 	
-	ProductRepository dao = ProductRepository.getInstance();
+	PreparedStatement pstmt = null;
 	
-	Product newProduct = new Product();
-	newProduct.setProductId(productId);
-	newProduct.setPname(name);
-	newProduct.setUnitPrice(price);
-	newProduct.setDescription(description);
-	newProduct.setManufacturer(manufacturer);
-	newProduct.setCategory(category);
-	newProduct.setUnitsInStock(stock);
-	newProduct.setCondition(condition);
-	newProduct.setFilename(fileName);
+	String sql = "insert into product values(?,?,?,?,?,?,?,?,?)";
+	pstmt = conn.prepareStatement(sql);
+	pstmt.setString(1, productId);
+	pstmt.setString(2, name);
+	pstmt.setInt(3, price);
+	pstmt.setString(4, description);
+	pstmt.setString(5, category);
+	pstmt.setString(6, manufacturer);
+	pstmt.setLong(7, stock);
+	pstmt.setString(8, condition);
+	pstmt.setString(9, filename);
 	
-	dao.addProduct(newProduct);
+	if (pstmt != null)
+		pstmt.close();
+	if (conn != null)
+		conn.close();
+	
 	
 	response.sendRedirect("products.jsp");
 %>
