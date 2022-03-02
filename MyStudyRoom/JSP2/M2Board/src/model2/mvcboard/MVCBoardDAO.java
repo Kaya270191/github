@@ -5,40 +5,38 @@ import java.util.Map;
 import java.util.Vector;
 import common.DBConnPool;
 
-public class MVCBoardDAO extends DBConnPool{
-	public MVCBoardDAO() {
-		super();
-	}
-	
-	//[ëª©ë¡ë³´ê¸°]
-	//ê²€ìƒ‰ ì¡°ê±´ì— ë§ëŠ” ê²Œì‹œë¬¼ì˜ ê°œìˆ˜ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
-	public int selectCount(Map<String, Object> map) {
-		int totalCount=0;
-		//ì¿¼ë¦¬ë¬¸ ì¤€ë¹„
+public class MVCBoardDAO extends DBConnPool { //Ä¿³Ø¼ÇÇ® »ó¼Ó
+    public MVCBoardDAO() {
+        super();
+    }
+
+    //[¸ñ·Ïº¸±â] 
+    // °Ë»ö Á¶°Ç¿¡ ¸Â´Â °Ô½Ã¹°ÀÇ °³¼ö¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+    public int selectCount(Map<String, Object> map) {
+        int totalCount = 0;
+        //Äõ¸®¹® ÁØºñ
         String query = "SELECT COUNT(*) FROM mvcboard";
-        //ê²€ìƒ‰ì¡°ê±´ì´ ìˆë‹¤ë©´ whereì ˆë¡œ ì¶”ê°€
+        //°Ë»öÁ¶°ÇÀÌ ÀÖ´Ù¸é whereÀı·Î Ãß°¡
         if (map.get("searchWord") != null) {
             query += " WHERE " + map.get("searchField") + " "
                    + " LIKE '%" + map.get("searchWord") + "%'";
         }
         try {
-            stmt = con.createStatement(); //ì¿¼ë¦¬ë¬¸ìƒì„±
-            rs = stmt.executeQuery(query); //ì¿¼ë¦¬ë¬¸ ì‹¤í–‰
+            stmt = con.createStatement(); //Äõ¸®¹®»ı¼º
+            rs = stmt.executeQuery(query); //Äõ¸®¹® ½ÇÇà
             rs.next();
-            totalCount = rs.getInt(1); //ê²€ìƒ‰ëœ ê²Œì‹œë¬¼ ê°œìˆ˜ ì €ì¥
+            totalCount = rs.getInt(1); //°Ë»öµÈ °Ô½Ã¹° °³¼ö ÀúÀå
         }
         catch (Exception e) {
-            System.out.println("ê²Œì‹œë¬¼ ì¹´ìš´íŠ¸ ì¤‘ ì˜ˆì™¸ ë°œìƒ");
+            System.out.println("°Ô½Ã¹° Ä«¿îÆ® Áß ¿¹¿Ü ¹ß»ı");
             e.printStackTrace();
         }
-		return totalCount; //ê²Œì‹œë¬¼ ê°œìˆ˜ë¥¼ ì„œë¸”ë¦¿ìœ¼ë¡œ ë°˜í™˜ 
-		
-		
-	}
-	
-	//[ëª©ë¡ë³´ê¸°]
-	//ê²€ìƒ‰ ì¡°ê±´ì— ë§ëŠ” ê²Œì‹œë¬¼ì˜ ëª©ë¡ì„ ë°˜í™˜í•©ë‹ˆë‹¤.(í˜ì´ì§• ê¸°ëŠ¥ ì§€ì›)
-	public List<MVCBoardDTO> selectListPage(Map<String,Object> map) {
+
+        return totalCount; //°Ô½Ã¹° °³¼ö¸¦ ¼­ºí¸´À¸·Î ¹İÈ¯
+    }
+
+    // °Ë»ö Á¶°Ç¿¡ ¸Â´Â °Ô½Ã¹° ¸ñ·ÏÀ» ¹İÈ¯ÇÕ´Ï´Ù(ÆäÀÌÂ¡ ±â´É Áö¿ø).
+    public List<MVCBoardDTO> selectListPage(Map<String,Object> map) {
         List<MVCBoardDTO> board = new Vector<MVCBoardDTO>();
         String query = " "
                      + "SELECT * FROM ( "
@@ -62,7 +60,7 @@ public class MVCBoardDAO extends DBConnPool{
             psmt.setString(2, map.get("end").toString());
             rs = psmt.executeQuery();
 
-            // ë°˜í™˜ëœ ê²Œì‹œë¬¼ ëª©ë¡ì„ List ì»¬ë ‰ì…˜ì— ì¶”ê°€
+            // ¹İÈ¯µÈ °Ô½Ã¹° ¸ñ·ÏÀ» List ÄÃ·º¼Ç¿¡ Ãß°¡
             while (rs.next()) {
                 MVCBoardDTO dto = new MVCBoardDTO();
 
@@ -81,14 +79,14 @@ public class MVCBoardDAO extends DBConnPool{
             }
         }
         catch (Exception e) {
-            System.out.println("ê²Œì‹œë¬¼ ì¡°íšŒ ì¤‘ ì˜ˆì™¸ ë°œìƒ");
+            System.out.println("°Ô½Ã¹° Á¶È¸ Áß ¿¹¿Ü ¹ß»ı");
             e.printStackTrace();
         }
-        return board; //ëª©ë¡ë°˜í™˜
+        return board; //¸ñ·Ï¹İÈ¯
     }
 
-// [ê¸€ì“°ê¸°] ìœ„í•œ ì¶”ê°€ë‚´ìš©
-    // ê²Œì‹œê¸€ ë°ì´í„°ë¥¼ ë°›ì•„ DBì— ì¶”ê°€í•©ë‹ˆë‹¤(íŒŒì¼ ì—…ë¡œë“œ ì§€ì›).
+// [±Û¾²±â] À§ÇÑ Ãß°¡³»¿ë
+    // °Ô½Ã±Û µ¥ÀÌÅÍ¸¦ ¹Ş¾Æ DB¿¡ Ãß°¡ÇÕ´Ï´Ù(ÆÄÀÏ ¾÷·Îµå Áö¿ø).
     public int insertWrite(MVCBoardDTO dto) {
         int result = 0;
         try {
@@ -106,20 +104,13 @@ public class MVCBoardDAO extends DBConnPool{
             result = psmt.executeUpdate();
         }
         catch (Exception e) {
-            System.out.println("ê²Œì‹œë¬¼ ì…ë ¥ ì¤‘ ì˜ˆì™¸ ë°œìƒ");
+            System.out.println("°Ô½Ã¹° ÀÔ·Â Áß ¿¹¿Ü ¹ß»ı");
             e.printStackTrace();
         }
         return result;
      }
 
 }
-
-
-
-
-
-
-
 
 
 

@@ -59,17 +59,14 @@
 				<td> <!-- 작성자 -->
 					${row.name }
 				
-				
 				</td>		
 				<td> <!-- 조회수 -->
 					${row.visitCount }
 				
-				
 				</td>	
 				<td> <!-- 작성일 -->
 					${row.postdate }
-				
-				
+					
 				</td>	
 				<td> <!-- 첨부파일 -->
 					<c:if test="${not empty row.ofile }">

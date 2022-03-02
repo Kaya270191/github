@@ -1,13 +1,13 @@
 package common;
 
-import java.sql.Connection; //DB와 연결 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import javax.sql.DataSource;
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
 
 public class DBConnPool {
@@ -33,7 +33,6 @@ public class DBConnPool {
 		catch(Exception e) {
 			System.out.println("DB 커넥션 풀 연결 실패");
 			e.printStackTrace();
-			
 		}
 	}
 	
