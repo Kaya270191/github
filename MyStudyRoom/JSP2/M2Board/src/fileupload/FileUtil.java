@@ -22,11 +22,72 @@ public class FileUtil {
 		try {
 			//파일 업로드
 			return new MultipartRequest(req, saveDirectory, maxPostSize, "UTF-8");
-			
 		}
 		catch(Exception e){
 			e.printStackTrace();
 			return null;
 		}
 	}
+	
+	//[파일 다운로드]
+	//명시한 파일을 찾아 다운로드합니다
+	public static void download(HttpServletRequest req, HttpServletResponse resp, String directory, String sfileName, String ofileName ) {
+		//물리적 위치 찾기
+		String sDirectory = req.getServletContext().getRealPath(directory);
+		
+		try {
+			//파일을 찾아 입력 스트림 생성
+			File file = new File(sDirectory, sfileName);
+			InputStream iStream = new FileInputStream(file);
+			
+			//한글 파일명 깨짐 방지 
+			String client = req.getHeader("User-Agent");
+			if(client.indexOf("WOW64")==-1) {
+				ofileName = new String(ofileName.getBytes("UTF-8"), "ISO-8859-1");
+			}
+			else {
+				ofileName = new String(ofileName.getBytes("KSC5601"), "ISO-8859-1");
+			}
+			
+			//파일 다운로드용 응답 헤더 설정 
+			resp.reset();
+			resp.setContentType("application/octest-stram");
+			resp.setHeader("Content-Disposition", "attachment; filename=\""+ofileName+"\"");
+			resp.setHeader("Content-Length", ""+file.length());
+			
+			
+			//response 내장 객체로부터 새로운 출력 스트림 생성 
+			OutputStream oStream = resp.getOutputStream();
+			
+			//출력 스트림에 파일 내용 출력 
+			byte b[] = new byte[(int)file.length()];
+			int readBuffer=0;
+			while((readBuffer = iStream.read(b))>0) {
+				oStream.write(b, 0, readBuffer);
+			}
+			
+			//입/출력 스트림 닫음 
+			iStream.close();
+			oStream.close();
+		}
+		catch (FileNotFoundException e) {
+			System.out.println("파일을 찾을 수 없습니다.");
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			System.out.println("예외가 발생했습니다.");
+			e.printStackTrace();
+		}
+
+	}
+	//[삭제하기] 글 삭제 시 첨부한 파일도 같이 삭제 
+	//지정한 위치의 파일을 삭제합니다.
+	public static void deleteFile(HttpServletRequest req, String directory, String filename) {
+		String sDirectory = req.getServletContext().getRealPath(directory);
+		File file = new File(sDirectory + File.separator +  filename); 
+		if(file.exists()) {
+			file.delete();
+		}
+	}
+	
 }
