@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import common.DBConnPool;
-import common.MVCBoardDTO;
+
 
 public class MVCBoardDAO extends DBConnPool { //커넥션풀 상속
     public MVCBoardDAO() {
@@ -220,10 +220,10 @@ public class MVCBoardDAO extends DBConnPool { //커넥션풀 상속
     	try {
     		//쿼리문 템플릿 준비 
     		String query = " UPDATE mvcboard "
-    					+ " SET title=?, name=?, ofile=?, sfile=? "
+    					+ " SET title=?, name=?, content=?, ofile=?, sfile=? "
     					+ " WHERE idx=? and pass=? "; 
     		psmt = con.prepareStatement(query); 
-    		psmt.setString(1,  dto.getTitle());
+    		psmt.setString(1, dto.getTitle());
     		psmt.setString(2, dto.getName());
     		psmt.setString(3, dto.getContent());
     		psmt.setString(4, dto.getOfile());
@@ -242,12 +242,4 @@ public class MVCBoardDAO extends DBConnPool { //커넥션풀 상속
     }
     
 }
-
-
-
-
-
-
-
-
 
