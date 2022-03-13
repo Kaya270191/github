@@ -7,21 +7,31 @@ public class Product implements Serializable {
 	
 	private static final long serialVersionUID = -427470057203867700L;
 	
-	private String productId; //상품 아이디
-	private String pname; //상품 이름
-	private Integer unitPrice; //상품 가격
-	private String description; //상품 설명
-	private String manufacturer; //제조사
-	private String category; //분류
-	private long unitsInStock; //재고 수
-	private String condition; // 신상품, 중고품, 재생품 
+	private String productId; 
+	private String pname; 
+	private Integer unitPrice; 
+	private String description; 
+	private String manufacturer; 
+	private String category; 
+	private long unitsInStock; 
+	private String condition; 
+	private String filename; 
+	private int quantity;
 	
 
-	public Product() { //기본생성자 
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public Product() { 
 		super();
 	}
 	
-	public Product(String productId, String pname, Integer unitPrice) { //생성자 
+	public Product(String productId, String pname, Integer unitPrice) { 
 		this.productId = productId;
 		this.pname = pname;
 		this.unitPrice = unitPrice; 
@@ -90,5 +100,14 @@ public class Product implements Serializable {
 	public void setManufacturer(String manufacturer) {
 		this.manufacturer = manufacturer;
 	}
+	
+	public String getFilename() {
+		return filename;
+	}
+	
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	
 	
 }
