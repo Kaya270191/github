@@ -37,7 +37,6 @@ public class Item {
     @Enumerated(EnumType.STRING) //상품팜매 상태는 Enum 타입임
     private ItemSellStatus itemSellStatus; //상품판매 상태
     
-    
     private LocalDateTime regTime; //등록 시간
     private LocalDateTime updateTime; //수정 시간
 
