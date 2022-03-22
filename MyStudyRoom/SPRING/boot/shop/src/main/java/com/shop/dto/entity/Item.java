@@ -1,4 +1,4 @@
-package com.shop.entity;
+package com.shop.dto.entity;
 
 
 import com.shop.constant.ItemSellStatus;
